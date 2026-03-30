@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --sand: #F5ECD7;
+  --sand-light: #FDF8EF;
+  --sand-dark: #E8D5B0;
+  --terra: #C4824A;
+  --terra-dark: #A0612E;
+  --terra-light: #D9A472;
+  --brown: #5C3A1E;
+  --brown-dark: #3D2210;
+  --brown-light: #7A5035;
+  --teal: #2E7D6B;
+  --teal-light: #4A9B87;
+  --gold: #C8973C;
+  --gold-light: #E0B86A;
+  --cream: #FAF3E0;
+  --dark: #1A0F07;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--cream);
+  color: var(--brown-dark);
+  font-family: 'Playfair Display', Georgia, serif;
+  overflow-x: hidden;
+}
+
+.font-arabic { font-family: 'Amiri', serif; direction: rtl; }
+.font-display { font-family: 'Cinzel', serif; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.8s ease forwards; }
+.animate-fade-in { animation: fadeIn 1s ease forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+.shimmer-text {
+  background: linear-gradient(90deg, #5C3A1E 0%, #C8973C 40%, #C4824A 60%, #5C3A1E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(92,58,30,0.15); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FDF8EF; }
+::-webkit-scrollbar-thumb { background: #C4824A; border-radius: 3px; }
