@@ -1,18 +1,14 @@
 "use client";
-import {
-  OrnamentalDivider,
-  ZelijSection,
-  OrnamentalStar,
-} from "../zelijpattern";
+import Image from "next/image";
 import { ExternalLink, Target, Globe, Users } from "lucide-react";
 
 const clubs = [
   {
     name: "Nexus Club",
-    school: "IFAG — Institut Higher Institute du groupe INSAG",
+    school: "IFAG - Institut Higher Institute du groupe INSAG",
     tagline: "Entrepreneuriat & Technologie",
-    color: "#C4824A",
-    accentColor: "#A0612E",
+    color: "#B85C38",
+    accentColor: "#A0553C",
     website: "https://nexus-club-zeta.vercel.app/",
     description:
       "Nexus Club est un club estudiantin dynamique et innovant qui regroupe des étudiants passionnés par l'entrepreneuriat et la technologie. Notre mission : favoriser l'apprentissage, l'échange de compétences et l'innovation, et rapprocher le monde professionnel aux étudiants.",
@@ -34,10 +30,10 @@ const clubs = [
   {
     name: "ESTIN Cloud Hub",
     school:
-      "ESTIN — École Supérieure en Sciences et Technologies de l'Informatique et du Numérique, Béjaïa",
+      "ESTIN - École Supérieure en Sciences et Technologies de l'Informatique et du Numérique, Béjaïa",
     tagline: "Cloud Computing & DevOps",
-    color: "#2E7D6B",
-    accentColor: "#1F5A4D",
+    color: "#D4A574",
+    accentColor: "#A0553C",
     website: null,
     description:
       "ESTIN Cloud Hub (ECH) est un club technologique universitaire spécialisé dans le Cloud Computing et le DevOps. Créé pour accompagner les étudiants dans leur transition vers le monde professionnel, le club développe des compétences pratiques et recherchées.",
@@ -60,24 +56,17 @@ const clubs = [
 
 export default function Clubs() {
   return (
-    <section
-      id="clubs"
-      className="relative py-24 px-4 overflow-hidden"
-      style={{ background: "#FAF3E0" }}
-    >
-      <ZelijSection className="opacity-50" />
-
+    <section id="clubs" className="relative py-24 px-4 overflow-hidden">
       <div className="relative z-10 max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <p className="font-display text-xs tracking-widest uppercase text-[#C4824A] mb-3">
+          <p className="font-display text-xs tracking-widest uppercase text-(--accent-terra)">
             Co-Organisateurs
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#3D2210]">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-(--primary)">
             Les Clubs
           </h2>
-          <OrnamentalDivider />
           <p
-            className="text-[#5C3A1E]/70 text-sm mt-4"
+            className="text-(--primary)/70 text-sm mt-4"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Deux clubs unis par une vision commune d&apos;excellence et
@@ -92,8 +81,8 @@ export default function Clubs() {
               className="relative rounded-sm overflow-hidden card-hover"
               style={{
                 background: "white",
-                border: "1px solid rgba(196,130,74,0.15)",
-                boxShadow: "0 4px 30px rgba(92,58,30,0.08)",
+                border: "1px solid rgba(184,92,56,0.15)",
+                boxShadow: "0 4px 30px rgba(61,36,22,0.08)",
               }}
             >
               {/* Top accent bar */}
@@ -114,10 +103,18 @@ export default function Clubs() {
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <OrnamentalStar size={24} opacity={0.6} />
+                      {club.name === "Nexus Club" && (
+                        <Image
+                          src="/nexus_club_logo.svg"
+                          alt="Nexus Club Logo"
+                          width={36}
+                          height={36}
+                          style={{ height: "auto" }}
+                        />
+                      )}
                       <h3
                         className="font-display text-xl font-bold"
-                        style={{ color: "#3D2210" }}
+                        style={{ color: "#3D2416" }}
                       >
                         {club.name}
                       </h3>
@@ -129,7 +126,7 @@ export default function Clubs() {
                       {club.tagline}
                     </p>
                     <p
-                      className="text-[#5C3A1E]/50 text-xs leading-relaxed"
+                      className="text-[#3D2416]/50 text-xs leading-relaxed"
                       style={{ fontFamily: "'Playfair Display', serif" }}
                     >
                       {club.school}
@@ -162,7 +159,7 @@ export default function Clubs() {
                   }}
                 />
                 <p
-                  className="text-[#5C3A1E]/75 text-sm leading-relaxed mb-5"
+                  className="text-[#3D2416]/75 text-sm leading-relaxed mb-5"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
                   {club.description}
@@ -180,7 +177,7 @@ export default function Clubs() {
                           <Icon size={12} style={{ color: club.color }} />
                         </div>
                         <p
-                          className="text-[#5C3A1E]/70 text-xs leading-relaxed"
+                          className="text-[#3D2416]/70 text-xs leading-relaxed"
                           style={{ fontFamily: "'Playfair Display', serif" }}
                         >
                           {pt.text}
