@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -24,19 +25,22 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#3D2210]/95 backdrop-blur-md shadow-lg border-b border-[#C4824A]/20"
+          ? "bg-(--primary)/85 backdrop-blur-md shadow-lg border-b-2 border-(--accent-terra)/40"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-full border-2 border-[#C4824A] flex items-center justify-center bg-[#C4824A]/10">
-            <span className="font-display text-[#C8973C] text-sm font-bold">
-              E7
-            </span>
-          </div>
-          <span className="font-display text-[#E8D5B0] text-lg tracking-wider hidden sm:block">
+          <Image
+            src="/el7el.svg"
+            alt="EL7EL Logo"
+            width={52}
+            height={52}
+            className="hover:opacity-80 transition-opacity drop-shadow-sm"
+            style={{ height: "auto" }}
+          />
+          <span className="font-display text-(--accent-terra) text-lg tracking-wider hidden sm:block hover:text-(--accent-warm-gold) transition-colors">
             EL7EL
           </span>
         </Link>
@@ -47,14 +51,17 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="font-display text-xs tracking-widest text-[#E8D5B0]/80 hover:text-[#C8973C] transition-colors uppercase"
+              className="font-display text-xs tracking-widest text-(--accent-warm-gold)/90 hover:text-(--accent-terra) transition-colors uppercase hover:drop-shadow-sm"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#register"
-            className="font-display text-xs tracking-widest bg-[#C4824A] hover:bg-[#A0612E] text-[#FAF3E0] px-5 py-2 rounded-sm uppercase transition-colors border border-[#C8973C]/30"
+            className="font-display text-xs tracking-widest bg-(--accent-terra) hover:bg-(--accent-rust) text-white px-5 py-2 transition-all border border-(--accent-warm-gold)/30 uppercase font-semibold"
+            style={{
+              boxShadow: "0 4px 8px rgba(184, 92, 56, 0.3)",
+            }}
           >
             Participer
           </a>
@@ -62,7 +69,7 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-[#E8D5B0] p-1"
+          className="md:hidden text-(--accent-terra) p-1 hover:text-(--accent-warm-gold) transition-colors"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
         >
@@ -72,14 +79,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#3D2210]/98 backdrop-blur-md border-t border-[#C4824A]/20">
+        <div className="md:hidden bg-(--primary)/95 backdrop-blur-md border-t-2 border-(--accent-terra)/40">
           <div className="px-4 py-6 flex flex-col gap-5">
             {navLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="font-display text-xs tracking-widest text-[#E8D5B0]/80 hover:text-[#C8973C] uppercase"
+                className="font-display text-xs tracking-widest text-(--accent-warm-gold)/90 hover:text-(--accent-terra) transition-colors uppercase"
               >
                 {l.label}
               </a>
@@ -87,7 +94,7 @@ export default function Navbar() {
             <a
               href="#register"
               onClick={() => setOpen(false)}
-              className="font-display text-xs tracking-widest bg-[#C4824A] text-[#FAF3E0] px-4 py-3 rounded-sm uppercase text-center mt-2"
+              className="font-display text-xs tracking-widest bg-(--accent-terra) hover:bg-(--accent-rust) text-white px-4 py-3 uppercase text-center mt-2 font-semibold transition-colors"
             >
               Participer
             </a>
