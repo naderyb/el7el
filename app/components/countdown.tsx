@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const EVENT_DATE = new Date("2025-04-23T16:00:00");
+const EVENT_DATE = new Date("2026-04-23T18:00:00");
 
 function pad(n: number) {
   return String(n).padStart(2, "0");
@@ -14,9 +14,15 @@ export default function Countdown() {
     minutes: 0,
     seconds: 0,
   });
-  const [mounted] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const tick = () => {
       const now = new Date();
       const diff = EVENT_DATE.getTime() - now.getTime();
@@ -54,22 +60,22 @@ export default function Countdown() {
             <div
               className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-sm flex items-center justify-center"
               style={{
-                background: "linear-gradient(135deg, #3D2210 0%, #5C3A1E 100%)",
-                border: "1px solid rgba(196,130,74,0.5)",
+                background: "linear-gradient(135deg, #5C3A1E 0%, #B85C38 100%)",
+                border: "1px solid rgba(212, 165, 116, 0.5)",
                 boxShadow:
-                  "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(200,151,60,0.2)",
+                  "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(212, 165, 116, 0.2)",
               }}
             >
               {/* Corner ornaments */}
-              <span className="absolute top-1 left-1 w-1.5 h-1.5 border-t border-l border-[#C8973C]/50" />
-              <span className="absolute top-1 right-1 w-1.5 h-1.5 border-t border-r border-[#C8973C]/50" />
-              <span className="absolute bottom-1 left-1 w-1.5 h-1.5 border-b border-l border-[#C8973C]/50" />
-              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 border-b border-r border-[#C8973C]/50" />
+              <span className="absolute top-1 left-1 w-1.5 h-1.5 border-t border-l border-[#D4A574]/50" />
+              <span className="absolute top-1 right-1 w-1.5 h-1.5 border-t border-r border-[#D4A574]/50" />
+              <span className="absolute bottom-1 left-1 w-1.5 h-1.5 border-b border-l border-[#D4A574]/50" />
+              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 border-b border-r border-[#D4A574]/50" />
               <span
                 className="font-display text-2xl sm:text-3xl font-bold"
                 style={{
-                  color: "#E8D5B0",
-                  textShadow: "0 0 20px rgba(200,151,60,0.4)",
+                  color: "#F5ECD7",
+                  textShadow: "0 0 20px rgba(212, 165, 116, 0.4)",
                 }}
               >
                 {pad(u.value)}
@@ -77,15 +83,15 @@ export default function Countdown() {
             </div>
             <span
               className="font-display text-[9px] sm:text-[10px] tracking-widest uppercase mt-2"
-              style={{ color: "#C4824A" }}
+              style={{ color: "#B85C38" }}
             >
               {u.label}
             </span>
           </div>
           {i < units.length - 1 && (
             <div className="flex flex-col items-center mt-3">
-              <span className="w-1 h-1 rounded-full bg-[#C4824A] mb-2" />
-              <span className="w-1 h-1 rounded-full bg-[#C4824A]" />
+              <span className="w-1 h-1 rounded-full bg-[#B85C38] mb-2" />
+              <span className="w-1 h-1 rounded-full bg-[#B85C38]" />
             </div>
           )}
         </div>
