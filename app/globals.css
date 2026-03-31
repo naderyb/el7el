@@ -1,69 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap");
 @import "tailwindcss";
 
 :root {
-  --sand: #F5ECD7;
-  --sand-light: #FDF8EF;
-  --sand-dark: #E8D5B0;
-  --terra: #C4824A;
-  --terra-dark: #A0612E;
-  --terra-light: #D9A472;
-  --brown: #5C3A1E;
-  --brown-dark: #3D2210;
-  --brown-light: #7A5035;
-  --teal: #2E7D6B;
-  --teal-light: #4A9B87;
-  --gold: #C8973C;
-  --gold-light: #E0B86A;
-  --cream: #FAF3E0;
-  --dark: #1A0F07;
+  /* Traditional Maghrebi color palette - warm earth tones */
+  --primary: #3d2416;
+  --primary-light: #5c3a1e;
+  --primary-dark: #2c1810;
+  --accent-terra: #b85c38;
+  --accent-rust: #a0553c;
+  --accent-burgundy: #6b2d2d;
+  --accent-warm-gold: #d4a574;
+  --accent-burnt: #8b4513;
+  /* Logo colors as accents (subtle) */
+  --logo-teal: #01b2a6;
+  --logo-blue: #037dbc;
+  --logo-navy: #052f43;
+  --logo-gold: #cc9033;
+  /* Backgrounds */
+  --bg-sand: #faf4ea;
+  --bg-light: #fdf8ef;
+  --bg-cream: #faf3e0;
+  --bg-warm: #e8d5b0;
+  /* Text */
+  --text-dark: #2c1810;
+  --text-primary: #3d2416;
+  --text-light: #7a5035;
+  --text-muted: #9b7560;
+  /* Borders & Details */
+  --border-terra: #b85c38;
+  --border-light: rgba(184, 92, 56, 0.15);
+  --shadow-warm: rgba(61, 36, 22, 0.1);
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background-color: var(--cream);
-  color: var(--brown-dark);
-  font-family: 'Playfair Display', Georgia, serif;
+  background-color: var(--bg-sand);
+  color: var(--text-primary);
+  font-family: "Playfair Display", Georgia, serif;
   overflow-x: hidden;
 }
 
-.font-arabic { font-family: 'Amiri', serif; direction: rtl; }
-.font-display { font-family: 'Cinzel', serif; }
+.font-arabic {
+  font-family: "Amiri", serif;
+  direction: rtl;
+}
+.font-display {
+  font-family: "Cinzel", serif;
+}
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 @keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes countdown-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
-.animate-fade-in-up { animation: fadeInUp 0.8s ease forwards; }
-.animate-fade-in { animation: fadeIn 1s ease forwards; }
-.animate-float { animation: float 3s ease-in-out infinite; }
-.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
 
 .shimmer-text {
-  background: linear-gradient(90deg, #5C3A1E 0%, #C8973C 40%, #C4824A 60%, #5C3A1E 100%);
+  background: linear-gradient(
+    90deg,
+    #5c3a1e 0%,
+    #b85c38 35%,
+    #d4a574 60%,
+    #5c3a1e 100%
+  );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -71,9 +135,48 @@ body {
   animation: shimmer 4s linear infinite;
 }
 
-.card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(92,58,30,0.15); }
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(184, 92, 56, 0.2);
+}
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #FDF8EF; }
-::-webkit-scrollbar-thumb { background: #C4824A; border-radius: 3px; }
+/* Casbah-style borders and decorations */
+.casbah-border {
+  border: 2px solid var(--border-terra);
+  border-radius: 2px;
+  position: relative;
+}
+
+.casbah-frame {
+  border-left: 4px solid var(--border-terra);
+  border-right: 4px solid var(--border-terra);
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.terra-accent {
+  background: linear-gradient(
+    135deg,
+    rgba(184, 92, 56, 0.1),
+    rgba(212, 165, 116, 0.08)
+  );
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-sand);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-terra);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-rust);
+}
