@@ -9,19 +9,17 @@ export default function SectionSeparator({
 }: SectionSeparatorProps) {
   return (
     <div
-      className={`w-full flex items-center justify-center py-12 ${className}`}
+      className={className}
+      style={{
+        background: "#ece9d8",
+        padding: "0 16px",
+        display: "flex",
+        alignItems: "center",
+        height: 24,
+      }}
     >
-      {/* LEFT LINE */}
-      <div className="flex-1 h-0.5 bg-(--accent-terra)" />
-
-      {/* CENTER SHAPE */}
-      <div className="mx-6 flex items-center justify-center relative">
-        <div className="w-4 h-4 border-2 border-(--accent-warm-gold) rotate-45" />
-        <div className="absolute w-2 h-2 bg-(--accent-warm-gold) rotate-45" />
-      </div>
-
-      {/* RIGHT LINE */}
-      <div className="flex-1 h-0.5 bg-(--accent-terra)" />
+      {/* Win2K horizontal rule: two lines */}
+      <div style={{ flex: 1, borderTop: "1px solid #808080", borderBottom: "1px solid #ffffff" }} />
     </div>
   );
 }

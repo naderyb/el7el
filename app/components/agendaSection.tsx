@@ -7,16 +7,8 @@ const days = [
     sublabel: "Lancement",
     items: [
       { time: "16:00 - 17:30", label: "Check-in", type: "admin" },
-      {
-        time: "17:30 - 19:00",
-        label: "Cérémonie d'ouverture",
-        type: "ceremony",
-      },
-      {
-        time: "19:00 - 21:00",
-        label: "Début de l'innovation",
-        type: "hack",
-      },
+      { time: "17:30 - 19:00", label: "Cérémonie d'ouverture", type: "ceremony" },
+      { time: "19:00 - 21:00", label: "Début de l'innovation", type: "hack" },
       { time: "21:00 - 22:00", label: "Dîner", type: "food" },
       { time: "22:00 - 01:00", label: "Innovation", type: "hack" },
     ],
@@ -49,55 +41,27 @@ const days = [
       { time: "12:00", label: "Remise du travail", type: "deadline" },
       { time: "12:30 - 13:30", label: "Déjeuner", type: "food" },
       { time: "15:00", label: "Cérémonie de clôture", type: "ceremony" },
-      {
-        time: "15:00 - 17:30",
-        label: "Pitch finale & remise des prix",
-        type: "ceremony",
-      },
+      { time: "15:00 - 17:30", label: "Pitch finale & remise des prix", type: "ceremony" },
     ],
   },
 ];
 
-const typeStyles: Record<
-  string,
-  { bg: string; dot: string; text: string; label: string }
-> = {
-  hack: {
-    bg: "bg-[#B85C38]/30 border-l-[#B85C38]",
-    dot: "bg-[#B85C38]",
-    text: "text-[#B85C38]",
-    label: "Innovation",
-  },
-  food: {
-    bg: "bg-[#D4A574]/30 border-l-[#D4A574]",
-    dot: "bg-[#D4A574]",
-    text: "text-[#D4A574]",
-    label: "Repas",
-  },
-  break: {
-    bg: "bg-[#A0553C]/30 border-l-[#A0553C]",
-    dot: "bg-[#A0553C]",
-    text: "text-[#A0553C]",
-    label: "Pause",
-  },
-  ceremony: {
-    bg: "bg-[#3D2416]/30 border-l-[#3D2416]",
-    dot: "bg-[#3D2416]",
-    text: "text-[#3D2416]",
-    label: "Cérémonie",
-  },
-  deadline: {
-    bg: "bg-red-200/75 border-l-red-500",
-    dot: "bg-red-500",
-    text: "text-red-600",
-    label: "Deadline",
-  },
-  admin: {
-    bg: "bg-[#6B2D2D]/30 border-l-[#6B2D2D]",
-    dot: "bg-[#6B2D2D]",
-    text: "text-[#6B2D2D]",
-    label: "Admin",
-  },
+const typeConfig: Record<string, { dot: string; label: string; color: string }> = {
+  hack:     { dot: "#008080", label: "Innovation",  color: "#000080" },
+  food:     { dot: "#008000", label: "Repas",       color: "#006400" },
+  break:    { dot: "#808000", label: "Pause",       color: "#554400" },
+  ceremony: { dot: "#000080", label: "Cérémonie",   color: "#000080" },
+  deadline: { dot: "#cc0000", label: "Deadline",    color: "#cc0000" },
+  admin:    { dot: "#808080", label: "Admin",       color: "#444" },
+};
+
+const WIN_BG = "#d4d0c8";
+const WIN_RAISED = {
+  borderTop: "2px solid #ffffff",
+  borderLeft: "2px solid #ffffff",
+  borderRight: "2px solid #404040",
+  borderBottom: "2px solid #404040",
+  background: WIN_BG,
 };
 
 export default function Agenda() {
@@ -105,106 +69,276 @@ export default function Agenda() {
   const day = days[activeDay];
 
   return (
-    <section id="agenda" className="relative py-24 px-4 overflow-hidden">
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="font-display text-xs tracking-widest uppercase text-(--accent-terra) mb-3">
-            Programme
-          </p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-(--primary)">
-            Agenda
-          </h2>
-          <p
-            className="text-(--primary)/70 text-sm mt-4"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+    <section
+      id="agenda"
+      style={{
+        background: "#ece9d8",
+        padding: "40px 16px",
+        fontFamily: "Tahoma, MS Sans Serif, Arial, sans-serif",
+      }}
+    >
+      <div style={{ maxWidth: 880, margin: "0 auto" }}>
+        {/* Outer window */}
+        <div
+          style={{
+            ...WIN_RAISED,
+            boxShadow: "3px 3px 8px rgba(0,0,0,0.35)",
+          }}
+        >
+          {/* Title bar */}
+          <div
+            style={{
+              background: "linear-gradient(90deg, #0a246a 0%, #a6caf0 100%)",
+              color: "white",
+              padding: "3px 4px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              userSelect: "none",
+            }}
           >
-            48 heures d&apos;innovation intensive · 23-25 Avril 2025
-          </p>
-        </div>
+            <span style={{ fontSize: 11, fontWeight: "bold" }}>
+              Calendrier — EL7EL 2026 · 48 heures d&apos;innovation
+            </span>
+            <div style={{ display: "flex", gap: 2 }}>
+              {["_", "□", "✕"].map((icon, i) => (
+                <button
+                  key={i}
+                  style={{
+                    width: 16,
+                    height: 14,
+                    fontSize: i === 2 ? 9 : 10,
+                    fontWeight: "bold",
+                    background: i === 2 ? "#c0392b" : WIN_BG,
+                    color: i === 2 ? "white" : "black",
+                    borderTop: "1px solid #ffffff",
+                    borderLeft: "1px solid #ffffff",
+                    borderRight: "1px solid #404040",
+                    borderBottom: "1px solid #404040",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 0,
+                  }}
+                >
+                  {icon}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        {/* Day tabs */}
-        <div className="flex justify-center gap-3 mb-12 flex-wrap">
-          {days.map((d, i) => (
-            <button
-              key={d.label}
-              onClick={() => setActiveDay(i)}
-              className="font-display text-xs tracking-wider uppercase px-6 py-3 rounded-sm transition-all duration-300 font-semibold"
-              style={
-                activeDay === i
-                  ? {
-                      background: "#B85C38",
-                      color: "white",
-                      border: "2px solid #B85C38",
-                      boxShadow: "0 6px 20px rgba(184, 92, 56, 0.4)",
-                    }
-                  : {
-                      background: "white",
-                      color: "#3D2416",
-                      border: "2px solid rgba(184, 92, 56, 0.4)",
-                      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-                    }
-              }
-            >
-              {d.label}{" "}
-              <span className="opacity-70 normal-case ml-1 block sm:inline">
-                · {d.sublabel}
+          {/* Menu bar */}
+          <div
+            style={{
+              background: WIN_BG,
+              borderBottom: "1px solid #808080",
+              display: "flex",
+              padding: "1px 2px",
+              fontSize: 11,
+            }}
+          >
+            {["Fichier", "Affichage", "Aller à", "Aide"].map((m) => (
+              <span
+                key={m}
+                style={{ padding: "2px 6px", cursor: "default", userSelect: "none" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#0a246a";
+                  e.currentTarget.style.color = "white";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.color = "black";
+                }}
+              >
+                {m}
               </span>
-            </button>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          <div className="absolute left-22 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#B85C38]/50 via-[#D4A574]/40 to-[#D4A574]/10 hidden sm:block" />
+          {/* Tab row */}
+          <div
+            style={{
+              background: "#bbb9b3",
+              display: "flex",
+              alignItems: "flex-end",
+              paddingTop: 6,
+              paddingLeft: 6,
+              paddingRight: 6,
+              borderBottom: `2px solid ${WIN_BG}`,
+            }}
+          >
+            {days.map((d, i) => (
+              <button
+                key={d.label}
+                onClick={() => setActiveDay(i)}
+                style={{
+                  padding: "4px 16px",
+                  fontSize: 11,
+                  fontFamily: "Tahoma, sans-serif",
+                  cursor: "pointer",
+                  position: "relative",
+                  marginRight: 2,
+                  background: activeDay === i ? WIN_BG : "#bbb9b3",
+                  borderTop: "1px solid #ffffff",
+                  borderLeft: "1px solid #ffffff",
+                  borderRight: "1px solid #404040",
+                  borderBottom: activeDay === i ? `2px solid ${WIN_BG}` : "1px solid #404040",
+                  zIndex: activeDay === i ? 1 : 0,
+                  fontWeight: activeDay === i ? "bold" : "normal",
+                  color: "#000",
+                }}
+              >
+                {d.label} · {d.sublabel}
+              </button>
+            ))}
+          </div>
 
-          <div className="flex flex-col gap-3">
-            {day.items.map((item, i) => {
-              const style = typeStyles[item.type];
-              return (
-                <div key={i} className="flex items-start gap-4 sm:gap-6">
-                  {/* Time */}
-                  <div className="hidden sm:block w-20 shrink-0 text-right">
-                    <span className="font-display text-[10px] tracking-wide font-semibold">
-                      {item.time.split(" - ")[0]}
-                    </span>
-                  </div>
+          {/* Content area */}
+          <div style={{ background: WIN_BG, padding: "8px" }}>
+            {/* Table header */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "120px 1fr 90px",
+                marginBottom: 1,
+              }}
+            >
+              {["Heure", "Activité", "Type"].map((h) => (
+                <div
+                  key={h}
+                  style={{
+                    ...WIN_RAISED,
+                    padding: "2px 8px",
+                    fontSize: 11,
+                    fontWeight: "bold",
+                    cursor: "default",
+                    userSelect: "none",
+                  }}
+                >
+                  {h}
+                </div>
+              ))}
+            </div>
 
-                  {/* Dot */}
+            {/* List container */}
+            <div
+              style={{
+                borderTop: "2px solid #404040",
+                borderLeft: "2px solid #404040",
+                borderRight: "2px solid #ffffff",
+                borderBottom: "2px solid #ffffff",
+                background: "white",
+                maxHeight: 400,
+                overflowY: "auto",
+              }}
+            >
+              {day.items.map((item, i) => {
+                const cfg = typeConfig[item.type] || typeConfig.admin;
+                return (
                   <div
-                    className={`hidden sm:flex shrink-0 w-3 h-3 rounded-full mt-1.5 ${style.dot} ring-2 ring-white shadow-md`}
-                  />
-
-                  {/* Card */}
-                  <div
-                    className={`flex-1 p-4 rounded-sm border-l-4 ${style.bg} transition-all duration-200 hover:shadow-lg hover:scale-[1.02]`}
+                    key={i}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "120px 1fr 90px",
+                      background: i % 2 === 0 ? "white" : "#f0ede8",
+                      cursor: "default",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.background = "#0a246a";
+                      Array.from(
+                        (e.currentTarget as HTMLDivElement).querySelectorAll("span")
+                      ).forEach((el) => ((el as HTMLElement).style.color = "white"));
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.background =
+                        i % 2 === 0 ? "white" : "#f0ede8";
+                      Array.from(
+                        (e.currentTarget as HTMLDivElement).querySelectorAll("span")
+                      ).forEach((el) => ((el as HTMLElement).style.color = ""));
+                    }}
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <span className="font-display text-sm font-semibold text-(--primary) leading-tight">
+                    {/* Time */}
+                    <div
+                      style={{
+                        padding: "4px 8px",
+                        fontSize: 11,
+                        borderRight: "1px solid #d0ccc4",
+                        fontFamily: "'Courier New', monospace",
+                        color: "#444",
+                      }}
+                    >
+                      <span>{item.time}</span>
+                    </div>
+                    {/* Label */}
+                    <div
+                      style={{
+                        padding: "4px 8px",
+                        fontSize: 11,
+                        borderRight: "1px solid #d0ccc4",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 6,
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: "50%",
+                          background: cfg.dot,
+                          display: "inline-block",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span style={{ fontWeight: item.type === "deadline" ? "bold" : "normal" }}>
                         {item.label}
                       </span>
-                      <span className="font-display text-[9px] tracking-widest uppercase text-(--primary)/50 sm:hidden">
-                        {item.time}
-                      </span>
-                      <span
-                        className={`hidden sm:block font-display text-[10px] tracking-widest font-semibold ${style.text}`}
-                      >
-                        {item.type === "hack"
-                          ? "Innovation"
-                          : item.type === "food"
-                            ? "Repas"
-                            : item.type === "break"
-                              ? "Pause"
-                              : item.type === "ceremony"
-                                ? "Cérémonie"
-                                : item.type === "deadline"
-                                  ? "Deadline"
-                                  : "Admin"}
+                    </div>
+                    {/* Type badge */}
+                    <div
+                      style={{
+                        padding: "4px 8px",
+                        fontSize: 10,
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span style={{ color: cfg.color, fontWeight: "bold" }}>
+                        {cfg.label}
                       </span>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Status bar */}
+          <div
+            style={{
+              background: WIN_BG,
+              borderTop: "2px solid #808080",
+              display: "flex",
+              fontSize: 10,
+              fontFamily: "Tahoma, sans-serif",
+              padding: "1px 4px",
+              gap: 0,
+            }}
+          >
+            <span
+              style={{
+                borderRight: "1px solid #808080",
+                paddingRight: 8,
+                marginRight: 8,
+                color: "#444",
+              }}
+            >
+              {day.items.length} élément(s)
+            </span>
+            <span style={{ color: "#444" }}>
+              {day.label} — {day.sublabel}
+            </span>
           </div>
         </div>
       </div>

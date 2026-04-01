@@ -5,154 +5,362 @@ import Countdown from "./countdown";
 export default function Hero() {
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4"
       style={{
-        background: "#FAF4EA",
-        backgroundAttachment: "fixed",
+        background: "#3a6ea5",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "40px 16px 40px",
+        fontFamily: "Tahoma, MS Sans Serif, Arial, sans-serif",
+        backgroundImage:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%233a6ea5'/%3E%3Crect width='2' height='2' fill='%234070b0'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%234070b0'/%3E%3C/svg%3E\")",
       }}
     >
-      {/* Fixed Zelij Pattern Background */}
+      {/* Main Dialog Window */}
       <div
-        className="fixed inset-0 pointer-events-none"
         style={{
-          backgroundImage: "url('/zelij-pattern.png')",
-          backgroundSize: "120px 120px",
-          backgroundPosition: "0 0",
-          backgroundRepeat: "repeat",
-          backgroundAttachment: "fixed",
-          opacity: 0.12,
-          filter: "grayscale(100%) brightness(0.8)",
+          background: "#d4d0c8",
+          borderTop: "2px solid #ffffff",
+          borderLeft: "2px solid #ffffff",
+          borderRight: "2px solid #404040",
+          borderBottom: "2px solid #404040",
+          boxShadow: "4px 4px 12px rgba(0,0,0,0.5)",
+          width: "100%",
+          maxWidth: 640,
         }}
-      />
-
-      {/* Glowing orb */}
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(1, 178, 166, 0.12) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 text-center flex flex-col items-center gap-6 max-w-4xl">
-        {/* Main Logo */}
+      >
+        {/* Title Bar */}
         <div
-          className="animate-fade-in-up"
           style={{
-            animationDelay: "0.4s",
-            opacity: 0,
-            animationFillMode: "forwards",
+            background:
+              "linear-gradient(90deg, #0a246a 0%, #a6caf0 100%)",
+            color: "white",
+            padding: "3px 4px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            userSelect: "none",
           }}
         >
-          <Image
-            src="/el7el.svg"
-            alt="EL7EL Logo"
-            width={300}
-            height={300}
-            priority
-            style={{ height: "auto" }}
-            className="drop-shadow-lg"
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <Image
+              src="/el7el.svg"
+              alt="EL7EL"
+              width={14}
+              height={14}
+              style={{ imageRendering: "pixelated" }}
+            />
+            <span style={{ fontSize: 11, fontWeight: "bold" }}>
+              EL7EL Hackathon - يد وحدة ما تسفق
+            </span>
+          </div>
+          <div style={{ display: "flex", gap: 2 }}>
+            {["_", "□", "✕"].map((icon, i) => (
+              <button
+                key={i}
+                style={{
+                  width: 16,
+                  height: 14,
+                  fontSize: i === 2 ? 9 : 10,
+                  fontWeight: "bold",
+                  background: i === 2 ? "#c0392b" : "#d4d0c8",
+                  color: i === 2 ? "white" : "black",
+                  borderTop: "1px solid #ffffff",
+                  borderLeft: "1px solid #ffffff",
+                  borderRight: "1px solid #404040",
+                  borderBottom: "1px solid #404040",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  lineHeight: 1,
+                  padding: 0,
+                }}
+              >
+                {icon}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Window content */}
+        <div style={{ padding: "16px" }}>
+          {/* Logo area */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 16,
+              marginBottom: 16,
+              padding: "12px",
+              background: "white",
+              borderTop: "2px solid #404040",
+              borderLeft: "2px solid #404040",
+              borderRight: "2px solid #ffffff",
+              borderBottom: "2px solid #ffffff",
+            }}
+          >
+            <Image
+              src="/el7el.svg"
+              alt="EL7EL Logo"
+              width={80}
+              height={80}
+              priority
+              style={{ height: "auto", imageRendering: "auto" }}
+            />
+            <div>
+              <p
+                style={{
+                  fontFamily: "Amiri, serif",
+                  fontSize: 22,
+                  color: "#0a246a",
+                  direction: "rtl",
+                  lineHeight: 1.8,
+                  margin: 0,
+                }}
+              >
+                يد وحدة ما تسفق
+              </p>
+              <p
+                style={{
+                  fontSize: 10,
+                  color: "#444",
+                  margin: "4px 0 0",
+                  fontStyle: "italic",
+                }}
+              >
+                Hackathon BUILD &amp; GO-TO MARKET
+              </p>
+            </div>
+          </div>
+
+          {/* Info text */}
+          <div
+            style={{
+              background: "white",
+              borderTop: "2px solid #404040",
+              borderLeft: "2px solid #404040",
+              borderRight: "2px solid #ffffff",
+              borderBottom: "2px solid #ffffff",
+              padding: "8px",
+              marginBottom: 12,
+              fontSize: 11,
+              lineHeight: 1.6,
+              color: "#000",
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              Un hackathon{" "}
+              <strong>BUILD &amp; GO-TO MARKET</strong> unique en son genre.
+              De la conception technique jusqu&apos;à la valorisation marché.
+              Co-organisé par <strong>Nexus Club</strong> et{" "}
+              <strong>ESTIN Cloud Hub</strong>.
+            </p>
+          </div>
+
+          {/* Countdown label */}
+          <p
+            style={{
+              fontSize: 10,
+              color: "#444",
+              marginBottom: 6,
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+            }}
+          >
+            Compte à rebours — 23 Avril 2026:
+          </p>
+
+          {/* Countdown widget */}
+          <div
+            style={{
+              background: "white",
+              borderTop: "2px solid #404040",
+              borderLeft: "2px solid #404040",
+              borderRight: "2px solid #ffffff",
+              borderBottom: "2px solid #ffffff",
+              padding: "10px",
+              marginBottom: 16,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Countdown />
+          </div>
+
+          {/* Separator */}
+          <div
+            style={{
+              borderTop: "1px solid #808080",
+              borderBottom: "1px solid #ffffff",
+              margin: "8px 0 12px",
+            }}
           />
-        </div>
 
-        {/* Arabic slogan */}
-        <div
-          className="animate-fade-in-up"
-          style={{
-            animationDelay: "0.6s",
-            opacity: 0,
-            animationFillMode: "forwards",
-          }}
-        >
-          <p
-            className="font-arabic text-2xl sm:text-3xl md:text-4xl"
-            style={{ color: "#584235", lineHeight: 1.8 }}
-          >
-            يد وحدة ما تسفق
-          </p>
-        </div>
-
-        {/* Description */}
-        <div
-          className="animate-fade-in-up max-w-2xl"
-          style={{
-            animationDelay: "0.8s",
-            opacity: 0,
-            animationFillMode: "forwards",
-          }}
-        >
-          <p
-            className="text-[#052F43]/75 text-sm sm:text-base leading-relaxed"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            Un hackathon{" "}
-            <strong className="text-[#584235]">BUILD &amp; GO-TO MARKET</strong>{" "}
-            unique en son genre. De la conception technique jusqu&apos;à la
-            valorisation marché.
-          </p>
-        </div>
-
-        {/* Countdown */}
-        <div
-          className="animate-fade-in-up mt-4"
-          style={{
-            animationDelay: "1s",
-            opacity: 0,
-            animationFillMode: "forwards",
-          }}
-        >
-          <p className="font-display text-[10px] tracking-widest uppercase text-[#052F43]/50 mb-4">
-            Compte à rebours
-          </p>
-          <Countdown />
-        </div>
-
-        {/* CTA */}
-        <div
-          className="animate-fade-in-up flex flex-col sm:flex-row gap-4 mt-4"
-          style={{
-            animationDelay: "1.2s",
-            opacity: 0,
-            animationFillMode: "forwards",
-          }}
-        >
-          <a
-            href="#register"
-            className="font-display text-xs tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300"
+          {/* Buttons */}
+          <div
             style={{
-              background: "linear-gradient(135deg, #584235, #584235)",
-              color: "white",
-              border: "1px solid #584235",
-              boxShadow: "0 4px 20px #584235",
+              display: "flex",
+              justifyContent: "center",
+              gap: 8,
+              flexWrap: "wrap",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.boxShadow = "0 6px 30px #F3E8D2")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.boxShadow = "0 4px 20px #F3E8D2")
-            }
           >
-            S&apos;inscrire Maintenant
-          </a>
-          <a
-            href="#about"
-            className="font-display text-xs tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300"
+            <a
+              href="#register"
+              style={{
+                background: "#d4d0c8",
+                color: "black",
+                fontSize: 11,
+                fontFamily: "Tahoma, sans-serif",
+                padding: "4px 20px",
+                borderTop: "2px solid #ffffff",
+                borderLeft: "2px solid #ffffff",
+                borderRight: "2px solid #404040",
+                borderBottom: "2px solid #404040",
+                textDecoration: "none",
+                outline: "1px solid black",
+                outlineOffset: "-1px",
+                fontWeight: "bold",
+                minWidth: 120,
+                textAlign: "center",
+              }}
+            >
+              S&apos;inscrire Maintenant
+            </a>
+            <a
+              href="#about"
+              style={{
+                background: "#d4d0c8",
+                color: "black",
+                fontSize: 11,
+                fontFamily: "Tahoma, sans-serif",
+                padding: "4px 20px",
+                borderTop: "2px solid #ffffff",
+                borderLeft: "2px solid #ffffff",
+                borderRight: "2px solid #404040",
+                borderBottom: "2px solid #404040",
+                textDecoration: "none",
+                minWidth: 120,
+                textAlign: "center",
+              }}
+            >
+              En savoir plus
+            </a>
+          </div>
+        </div>
+
+        {/* Status bar */}
+        <div
+          style={{
+            background: "#d4d0c8",
+            borderTop: "2px solid #808080",
+            display: "flex",
+            fontSize: 10,
+            fontFamily: "Tahoma, sans-serif",
+            padding: "1px 4px",
+          }}
+        >
+          <span
             style={{
-              background: "transparent",
-              color: "#584235",
-              border: "1px solid #584235",
+              borderRight: "1px solid #808080",
+              paddingRight: 8,
+              marginRight: 8,
+              color: "#444",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.borderColor = "#584235")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.borderColor = "#584235")
-            }
           >
-            En savoir plus
-          </a>
+            Prêt
+          </span>
+          <span style={{ color: "#444" }}>23-25 Avr 2026 · Alger, Algérie</span>
+        </div>
+      </div>
+
+      {/* Second floating window - announcement */}
+      <div
+        style={{
+          background: "#d4d0c8",
+          borderTop: "2px solid #ffffff",
+          borderLeft: "2px solid #ffffff",
+          borderRight: "2px solid #404040",
+          borderBottom: "2px solid #404040",
+          boxShadow: "4px 4px 12px rgba(0,0,0,0.4)",
+          width: "100%",
+          maxWidth: 400,
+          marginTop: 24,
+        }}
+      >
+        {/* Title bar inactive */}
+        <div
+          style={{
+            background: "linear-gradient(90deg, #7a96df 0%, #adc3e0 100%)",
+            color: "white",
+            padding: "3px 4px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            userSelect: "none",
+          }}
+        >
+          <span style={{ fontSize: 11, fontWeight: "bold" }}>
+            Nouveau message (1)
+          </span>
+          <div style={{ display: "flex", gap: 2 }}>
+            {["_", "✕"].map((icon, i) => (
+              <button
+                key={i}
+                style={{
+                  width: 16,
+                  height: 14,
+                  fontSize: 9,
+                  fontWeight: "bold",
+                  background: "#d4d0c8",
+                  color: "black",
+                  borderTop: "1px solid #ffffff",
+                  borderLeft: "1px solid #ffffff",
+                  borderRight: "1px solid #404040",
+                  borderBottom: "1px solid #404040",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 0,
+                }}
+              >
+                {icon}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div style={{ padding: "10px 12px", fontSize: 11, color: "#000" }}>
+          <p style={{ margin: "0 0 6px 0", fontWeight: "bold", color: "#0000aa" }}>
+            [Annonce] Inscriptions ouvertes !
+          </p>
+          <p style={{ margin: 0, lineHeight: 1.6 }}>
+            Les inscriptions pour EL7EL 2026 sont maintenant ouvertes.
+            Rejoignez-nous pour 48h d&apos;innovation intensive.
+          </p>
+          <div style={{ marginTop: 10, display: "flex", justifyContent: "flex-end", gap: 6 }}>
+            <a
+              href="#register"
+              style={{
+                background: "#d4d0c8",
+                color: "black",
+                fontSize: 11,
+                fontFamily: "Tahoma, sans-serif",
+                padding: "3px 14px",
+                borderTop: "2px solid #ffffff",
+                borderLeft: "2px solid #ffffff",
+                borderRight: "2px solid #404040",
+                borderBottom: "2px solid #404040",
+                textDecoration: "none",
+              }}
+            >
+              OK
+            </a>
+          </div>
         </div>
       </div>
     </section>

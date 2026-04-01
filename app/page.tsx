@@ -8,7 +8,7 @@ import SectionSeparator from "./components/sectionSeparator";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full">
+    <main className="flex flex-col w-full" style={{ paddingTop: 64 }}>
       <Navbar />
       <Hero />
       <SectionSeparator className="max-w-6xl mx-auto px-4" />

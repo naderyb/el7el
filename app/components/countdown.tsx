@@ -32,7 +32,7 @@ export default function Countdown() {
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
-        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
       );
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
@@ -53,45 +53,84 @@ export default function Countdown() {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-3 sm:gap-6">
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 6,
+        fontFamily: "Tahoma, MS Sans Serif, monospace",
+      }}
+    >
       {units.map((u, i) => (
-        <div key={u.label} className="flex items-start gap-3 sm:gap-6">
-          <div className="flex flex-col items-center">
+        <div
+          key={u.label}
+          style={{ display: "flex", alignItems: "flex-start", gap: 6 }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            {/* Sunken display panel */}
             <div
-              className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-sm flex items-center justify-center"
               style={{
-                background: "linear-gradient(135deg, #5C3A1E 0%, #B85C38 100%)",
-                border: "1px solid rgba(212, 165, 116, 0.5)",
-                boxShadow:
-                  "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(212, 165, 116, 0.2)",
+                background: "black",
+                color: "#00ff00",
+                fontFamily: "'Courier New', Courier, monospace",
+                fontSize: 22,
+                fontWeight: "bold",
+                width: 56,
+                height: 36,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderTop: "2px solid #404040",
+                borderLeft: "2px solid #404040",
+                borderRight: "2px solid #ffffff",
+                borderBottom: "2px solid #ffffff",
+                letterSpacing: "0.05em",
               }}
             >
-              {/* Corner ornaments */}
-              <span className="absolute top-1 left-1 w-1.5 h-1.5 border-t border-l border-[#D4A574]/50" />
-              <span className="absolute top-1 right-1 w-1.5 h-1.5 border-t border-r border-[#D4A574]/50" />
-              <span className="absolute bottom-1 left-1 w-1.5 h-1.5 border-b border-l border-[#D4A574]/50" />
-              <span className="absolute bottom-1 right-1 w-1.5 h-1.5 border-b border-r border-[#D4A574]/50" />
-              <span
-                className="font-display text-2xl sm:text-3xl font-bold"
-                style={{
-                  color: "#F5ECD7",
-                  textShadow: "0 0 20px rgba(212, 165, 116, 0.4)",
-                }}
-              >
-                {pad(u.value)}
-              </span>
+              {pad(u.value)}
             </div>
             <span
-              className="font-display text-[9px] sm:text-[10px] tracking-widest uppercase mt-2"
-              style={{ color: "#B85C38" }}
+              style={{
+                fontSize: 9,
+                color: "#444",
+                marginTop: 3,
+                fontFamily: "Tahoma, sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+              }}
             >
               {u.label}
             </span>
           </div>
           {i < units.length - 1 && (
-            <div className="flex flex-col items-center mt-3">
-              <span className="w-1 h-1 rounded-full bg-[#B85C38] mb-2" />
-              <span className="w-1 h-1 rounded-full bg-[#B85C38]" />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                paddingTop: 8,
+                gap: 4,
+              }}
+            >
+              <span
+                style={{
+                  width: 4,
+                  height: 4,
+                  background: "#000",
+                  display: "block",
+                  borderRadius: 0,
+                }}
+              />
+              <span
+                style={{
+                  width: 4,
+                  height: 4,
+                  background: "#000",
+                  display: "block",
+                  borderRadius: 0,
+                }}
+              />
             </div>
           )}
         </div>
