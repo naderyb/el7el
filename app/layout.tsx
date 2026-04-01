@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "EL7EL - Hackathon | يد وحدة ما تسفق",
   description:
     "EL7EL hackathon hybride innovant co-organisé par Nexus Club et ESTIN Cloud Hub. BUILD & GO-TO MARKET - 23 Avril 2025.",
+  icons: {
+    icon: "/el7el.svg",
+  },
 };
 
 export default function RootLayout({
