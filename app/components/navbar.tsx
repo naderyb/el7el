@@ -57,7 +57,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#register"
+            href="/register"
             className="font-display text-xs tracking-widest bg-(--accent-terra) hover:bg-(--accent-rust) text-white px-5 py-2 transition-all border border-(--accent-warm-gold)/30 uppercase font-semibold"
             style={{
               boxShadow: "0 4px 8px rgba(184, 92, 56, 0.3)",
