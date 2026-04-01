@@ -119,7 +119,7 @@ export default function Hero() {
           }}
         >
           <a
-            href="#register"
+            href="/register"
             className="font-display text-xs tracking-widest uppercase px-8 py-4 rounded-sm transition-all duration-300"
             style={{
               background: "linear-gradient(135deg, #584235, #584235)",
